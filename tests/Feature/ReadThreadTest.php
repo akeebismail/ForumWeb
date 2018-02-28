@@ -29,7 +29,7 @@ class ReadThreadTest extends TestCase
     public function a_user_can_browse_threads()
     {
 
-        $response = $this->get('/threads')
+       $this->get('/threads')
             ->assertSee($this->thread->title);
     }
     /**
@@ -38,7 +38,7 @@ class ReadThreadTest extends TestCase
      * @return void
      */
     public function a_user_can_view_single_thread(){
-        $response = $this->get($this->thread->path())
+         $this->get($this->thread->path())
             ->assertSee($this->thread->title);
     }
     /**
@@ -50,7 +50,25 @@ class ReadThreadTest extends TestCase
         //given a thread with a replies
         // then we see the thread and replies
         $reply= factory('App\Reply')->create(['thread_id'=>$this->thread->id]);
-        $response = $this->get($this->thread->path())
+        $this->get($this->thread->path())
             ->assertSee($reply->body);
+    }
+
+    /**
+     * A basic test example.
+     * @test
+     * @return void
+     */
+
+    public function a_user_can_filter_threads_according_to_tag(){
+       // $this->withExceptionHandling();
+        $channel = create('App\Channel');
+        $threadInChannel = create('App\Thread',['channel_id'=>$channel->id]);
+        $threadNotInChannel = create('App\Thread');
+
+        $this->get('/threads/'.$channel->slug)
+            ->assertSee($threadInChannel->title)
+            ->assertDontSee($threadNotInChannel->title);
+
     }
 }
