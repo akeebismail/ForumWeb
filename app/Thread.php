@@ -36,4 +36,8 @@ class Thread extends Model
     public function test(){
 
     }
+
+    public function scopeFilters($query,$filters){
+        return $filters->apply($query);
+    }
 }
