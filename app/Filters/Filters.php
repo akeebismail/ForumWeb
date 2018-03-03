@@ -53,7 +53,7 @@ abstract class Filters{
             if (method_exists($this, $filter)) {
                 $this->$filter($value);
             }
-        }
+        } 
 
         return $this->builder;
     }
@@ -65,7 +65,7 @@ abstract class Filters{
      */
     public function getFilters()
     {
-        return array_filter($this->request->only($this->filters));
+        return $this->request->only($this->filters);
     }
 
 }

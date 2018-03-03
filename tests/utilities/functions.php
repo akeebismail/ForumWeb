@@ -1,8 +1,8 @@
 <?php
 
-function create($class, $attr= []){
-   return factory($class)->create($attr);
+function create($class, $attr= [], $time = null){
+   return factory($class, $time)->create($attr);
 }
-function make($class, $attr = []){
-    return factory($class)->make($attr);
+function make($class, $attr = [], $time = null){
+    return factory($class, $time)->make($attr);
 }

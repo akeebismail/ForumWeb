@@ -11,6 +11,8 @@ use App\User;
 use Illuminate\Http\Request;
 
 class ThreadFilters extends Filters {
+
+
     /**
      * Registered filters to operate upon.
      *

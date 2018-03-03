@@ -26,7 +26,7 @@ class ThreadController extends Controller
     public function index(Channel $channel, ThreadFilters $filters)
     {
         //
-        $threads = Thread::filter($filters)->get();
+        $threads = Thread::latest()->filter($filters)->get();
 
         return view('threads.index',compact('threads'));
     }
